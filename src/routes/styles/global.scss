@@ -1,0 +1,68 @@
+/* Jost Black */
+@font-face {
+  font-family: "Jost ExtraLight";
+  font-weight: bold;
+  src: url("/fonts/JOST/Jost-ExtraLight.ttf") format("truetype");
+}
+
+/* Jost */
+@font-face {
+  font-family: "Jost";
+  font-weight: normal;
+  src: url("/fonts/JOST/Jost-Light.ttf") format("truetype");
+}
+
+/* Kiona */
+@font-face {
+  font-family: "Kiona Regular";
+  font-weight: normal;
+  src: url("/fonts/KIONA/Kiona-Regular.ttf") format("truetype");
+}
+
+/* Poppins */
+@font-face {
+  font-family: "Poppins";
+  font-weight: normal;
+  src: url("fonts/Poppins/Poppins-Medium.ttf") format("truetype");
+}
+
+:global(:root) {
+  --color-foreground: #181818;
+  --color-outline: #ccff0d;
+  --color-background: #ffffff; // #f1e9e4
+
+  --font-title: "Kiona Regular", serif;
+  --font-subtitle: "Jost ExtraLight", serif;
+  --font-paragraph: "Jost", sans-serif;
+  --font-extra: "Poppins", sans-serif;
+
+  --transition-short-duration: 1s;
+  --transition-shortest-duration: .3s;
+
+  --ham-size: calc(clamp(100rem, 30vw, 200rem) / 4);
+}
+
+// Set the width and color of the scrollbar
+:global(::-webkit-scrollbar) {
+  width: 5rem;
+  height: 0;
+}
+:global(::-webkit-scrollbar-track) {
+  background: var(--color-background);
+}
+:global(::-webkit-scrollbar-thumb) {
+  background: var(--color-foreground);
+  border-radius: 5rem;
+}
+:global(::-webkit-scrollbar-thumb:hover) {
+  background: var(--color-outline);
+}
+
+:global(body) {
+  background: var(--color-foreground);
+}
+
+:global(*) {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
