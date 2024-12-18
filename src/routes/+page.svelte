@@ -4,7 +4,6 @@
   import Notification from "../components/Notification/Notification.svelte";
   import ShaderToy from "../components/ShaderToy/ShaderToy.svelte";
   import OShader from "../components/ShaderToy/O.shader";
-    import Logic from "../components/Logic/Logic.svelte";
 </script>
 
 <GlobalData />
