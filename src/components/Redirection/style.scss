@@ -6,6 +6,10 @@
     flex-wrap: wrap;
     padding: 100px clamp(10vw, 10px, 10vh);
 
+    @media screen and (max-width: 1024px) {
+        padding: 100px 0;
+    } 
+
     & > * {
         width: 100%;
         display: block;
@@ -34,6 +38,7 @@
     @media screen and (max-width: 1024px) {
         flex-direction: column;
         width: 100%;
+        transform: scale(1) !important;
     }
 
     &-side {
