@@ -1,0 +1,96 @@
+body {
+    margin: 0;
+    font-family: var(--font-paragraph);
+    text-align: center;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+}
+
+.logo {
+    display: grid;
+    place-items: center;
+}
+
+.image {
+    width: min(1165px, 85vw);
+    margin: 177px auto 108px;
+}
+
+.button-container {
+    display: grid;
+    place-items: center;
+}
+
+.button {
+    margin: auto;
+    display: inline-block;
+    text-decoration: none;
+    padding: 1rem 4rem;
+    margin-bottom: 150px;
+    background-color: var(--color-foreground);
+    color: var(--color-outline);
+    font-weight: bold;
+    transition: 0.35s clip-path, .5s padding;
+    transition-timing-function: cubic-bezier(1,-1.31, 0.44, 2.56);
+    font-family: var(--font-extra);
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+
+    &:hover {
+        padding: 1rem 5rem;
+    }
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 50px;
+    padding: 40px 0;
+    background-color: var(--color-foreground);
+    color: var(--color-outline);
+    font-weight: bold;
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    width: 100vw;
+    overflow: hidden;
+    text-overflow: clip;
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    // animation: scroll 10s linear infinite;
+    
+    span {
+        padding: 0 10px;
+        display: inline-block;
+        transition: color 0.3s;
+        font-weight: 100;
+        letter-spacing: 1px;
+        top: 25px;
+        &:hover {
+            color: var(--color-outline);
+        }
+
+        &::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background: var(--color-outline);
+            display: inline-block;
+            position: relative;
+            left: -15px;
+            top: -2.5px;
+            transform: rotate(45deg);
+        }
+    }
+}
+
+// @keyframes scroll {
+//   from {
+//     transform: translateX(100%);
+//   }
+//   to {
+//     transform: translateX(-100%);
+//   }
+// }

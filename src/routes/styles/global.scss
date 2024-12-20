@@ -1,8 +1,8 @@
 /* Jost Black */
 @font-face {
-  font-family: "Jost ExtraLight";
+  font-family: "Spartan Black";
   font-weight: bold;
-  src: url("/fonts/JOST/Jost-ExtraLight.ttf") format("truetype");
+  src: url("/fonts/League_Spartan/static/LeagueSpartan-Black.ttf") format("truetype");
 }
 
 /* Jost */
@@ -32,7 +32,7 @@
   --color-background: #ffffff; // #f1e9e4
 
   --font-title: "Kiona Regular", serif;
-  --font-subtitle: "Jost ExtraLight", serif;
+  --font-subtitle: "Spartan Black", serif;
   --font-paragraph: "Jost", sans-serif;
   --font-extra: "Poppins", sans-serif;
 
@@ -44,7 +44,7 @@
 
 // Set the width and color of the scrollbar
 :global(::-webkit-scrollbar) {
-  width: 5rem;
+  width: 5px;
   height: 0;
 }
 :global(::-webkit-scrollbar-track) {
@@ -52,14 +52,14 @@
 }
 :global(::-webkit-scrollbar-thumb) {
   background: var(--color-foreground);
-  border-radius: 5rem;
+  border-radius: 5px;
 }
 :global(::-webkit-scrollbar-thumb:hover) {
   background: var(--color-outline);
 }
 
 :global(body) {
-  background: var(--color-foreground);
+  background: var(--color-background);
 }
 
 :global(*) {
