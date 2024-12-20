@@ -1,6 +1,8 @@
 <script lang="ts">
     import { onMount } from "svelte";
 
+    const speed = 1;
+
     onMount(() => {
         const band = document.querySelector(".scrolling-band");
         const spans = Array.from(band.children);
@@ -53,11 +55,16 @@
 
 <div class="footer">
     <div class="scrolling-band">
-        <span>LOS PRODUCTOS</span>
-        <span>ENVÍOS A TODO EL PAÍS</span>
-        <span>ASESORÍA PERSONALIZADA</span>
-        <span>NUEVA LÍNEA</span>
+        <span>OFERTAS DEL MES</span>
+        <span>PROGRAMA DE FIDELIDAD</span>
+        <span>SUSCRÍBETE A NUESTRO BOLETÍN</span>
+        <span>GARANTÍA DE SATISFACCIÓN</span>
+        <span>¡NUEVA PROMO 2X1!</span>
+        <span>CONSULTA NUESTRO BLOG</span>
         <span>+5068888888</span>
+        <span>HORARIO DE ATENCIÓN: LUN-VIE 9AM-6PM</span>
+        <span>DESCARGA NUESTRA APP</span>
+        <span>ENCUÉNTRANOS EN REDES SOCIALES</span>
     </div>
 </div>
 
