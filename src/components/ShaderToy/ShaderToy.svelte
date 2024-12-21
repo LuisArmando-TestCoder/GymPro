@@ -283,6 +283,5 @@
     width: 100%;
     height: 100%;
     display: block;
-    border-radius: 0 0 10rem 10rem;
   }
 </style>

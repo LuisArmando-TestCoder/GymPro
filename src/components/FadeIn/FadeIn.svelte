@@ -43,7 +43,7 @@
     // color: var(--color-background);
 
     :global(.wrapper-letter) {
-      color: var(--color-background);
+      color: blue;
     }
   }
 </style>

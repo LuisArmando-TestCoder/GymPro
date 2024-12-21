@@ -10,20 +10,20 @@
         const GhostHTML = document.createElement("DIV");
 
         setTimeout(() => {
-                innerText.set(HTMLText);
+                innerText.set(`<span>${HTMLText}</span>`);
 
                 GhostHTML.innerHTML = $innerText;
 
                 const allElements = GhostHTML.querySelectorAll("*");
                 // Filter elements that do not have child elements
                 const lastLevelChildren: Element[] = Array.from(allElements).filter(el => el.children.length === 0);
-                
-                [...lastLevelChildren].forEach((child, i) => {
+
+                ;[...lastLevelChildren].forEach((child, i) => {
                     const childrenWrappedOuterHTMLs = (child as HTMLElement).innerText.split("").map((letter, j) => {
                         const letterWrapper = document.createElement("span");
 
                         letterWrapper.className = "wrapper-letter";
-                        letterWrapper.style.transition = `${Math.log((i + 1) * (j + 1)) * transitionSpeed}s`;
+                        letterWrapper.style.animationDelay = `${Math.log((i + 1) * (j + 1)) * transitionSpeed}s`;
                         letterWrapper.innerText = letter;
 
                         return letterWrapper.outerHTML;
