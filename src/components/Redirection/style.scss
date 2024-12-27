@@ -57,6 +57,7 @@
         color: var(--color-outline);
         transform: scale(1.1);
         margin: 0 min(.9vw, 16px);
+        z-index: 1;
 
         .store-redirection {
             color: var(--color-outline);

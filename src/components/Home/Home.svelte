@@ -1,11 +1,11 @@
 <script lang="ts">
     import Band from "../Band/Band.svelte";
-    import SVG from "../SVG/SVG.svelte";
+    import HeroBanner from "../HeroBanner/HeroBanner.svelte";
 </script>
 
 <div class="logo">
     <div class="image">
-        <SVG/>
+        <HeroBanner/>
     </div>
 </div>
 

@@ -2,30 +2,67 @@
   import GlobalData from "../components/GlobalData/GlobalData.svelte";
   import Header from "../components/Header/Header.svelte";
   import Home from "../components/Home/Home.svelte";
-  import shader from "../components/ShaderToy/T.shader";
-  import ShaderToy from "../components/ShaderToy/ShaderToy.svelte";
+  import Redirection from "../components/Redirection/Redirection.svelte";
+  import ChosenShader from "../components/ShaderToy/ChosenShader/ChosenShader.svelte";
+  import ThemeChanger from "../components/ThemeChanger/ThemeChanger.svelte";
 </script>
 
-<div class="shader">
-  <ShaderToy {shader} iChannel0={
-    "./Texto Latino Negativo.jpg"
-  } />
-</div>
-<Header />
 <GlobalData />
+<ChosenShader />
+<Header />
 <Home />
+<div class="headline">
+  <p class="title">
+    <span class="color-1">Somos</span> <span class="color-2">tu tienda</span> <span class="color-1">#1</span> <span class="color-2">de</span> <span class="color-1">suplementos deportivos</span>
+  </p>
+  <p class="extra">
+    Aquí encontrarás todo lo que necesitas para alcanzar tus metas. ¡Nosotros te asesoramos para que adquieras el producto que más se adapte a tus necesidades!
+    conoce más sobre nosotros
+  </p>
+</div>
+<Redirection />
 
 <style lang="scss">
   @import "./styles/reset.scss";
   @import "./styles/global.scss";
 
-  .shader {
-    filter: contrast(55%) brightness(4.25);
-    position: fixed;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    width: 100%;
+  .extra {
+    color: var(--color-background);
+    font-family: var(--font-paragraph);
+    place-items: center;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .title {
+    text-align: right;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-family: var(--font-title);
+    border-right: 1px solid var(--color-background);
+  }
+
+  .headline {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 30rem 10rem 10rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid var(--color-background);
+
+    & > * {
+      padding: 2rem 4rem;
+    }
+
+    .color-1 {
+      color: var(--color-foreground);
+    }
+
+    .color-2 {
+      color: var(--color-background);
+    }
   }
 </style>

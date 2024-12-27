@@ -1,4 +1,6 @@
 <script>
+    import ThemeChanger from "../ThemeChanger/ThemeChanger.svelte";
+
     let menuOpen = false;
 
     function toggleMenu() {
@@ -22,6 +24,7 @@
                 </ul>
             </div>
         </div>
+        <ThemeChanger />
         <div class="cart-icon">🛒</div>
         <span class="menu-icon" on:click={toggleMenu}>☰</span>
     </nav>
@@ -29,12 +32,19 @@
 
 <style>
     header {
-        background-color: #fff;
-        border-bottom: 1px solid #ddd;
+        background-color: var(--color-background-inversion);
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 1rem 2rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        box-shadow: 0 0 100px -25px var(--color-background);
+        color:  var(--color-background);
+        font-family: var(--font-title);
     }
 
     nav {
@@ -59,11 +69,9 @@
         text-transform: uppercase;
         font-size: 0.9rem;
         font-weight: bold;
-        color: #000;
     }
 
-    .menu-item:hover {
-        color: #ffcc00;
+    .menu-item:hover {        
     }
 
     .dropdown {

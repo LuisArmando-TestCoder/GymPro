@@ -1,5 +1,6 @@
 <script lang="ts">
     import HtmlTextLettersClassWrapper from "../HTMLTextLettersClassWrapper/HTMLTextLettersClassWrapper.svelte";
+    import Svg from "../SVG/SVG.svelte";
 
 </script>
 
@@ -12,7 +13,7 @@
     
     <div class="cards">
         <div class="card card-side">
-            <img src="./icons/muscle.svg" alt="Asesorías Icono" class="icon" />
+            <Svg src="./icons/muscle.svg" />
             <h3 class="section">
                 <HtmlTextLettersClassWrapper HTMLText="Asesorías Personalizadas" />
             </h3>
@@ -21,11 +22,11 @@
             </p>
             <a href="./" class="store-redirection">
                 <HtmlTextLettersClassWrapper HTMLText="Ver tienda" />
-                <img class="arrow" src="./icons/diagonal-arrow-right-up black.svg" alt="">
+                <Svg src="./icons/diagonal-arrow-right-up black.svg" />
             </a>
         </div>
         <div class="card card-center">
-            <img src="./icons/weightlifting.svg" alt="Suplementos Icono" class="icon" />
+            <Svg src="./icons/weightlifting.svg" />
             <h3 class="section">
                 <HtmlTextLettersClassWrapper HTMLText="Suplementos Deportivos" />
             </h3>
@@ -34,11 +35,11 @@
             </p>
             <a href="./" class="store-redirection">
                 <HtmlTextLettersClassWrapper HTMLText="Ver tienda" />
-                <img class="arrow" src="./icons/diagonal-arrow-right-up green.svg" alt="">
+                <Svg src="./icons/diagonal-arrow-right-up green.svg" />
             </a>
         </div>
         <div class="card card-side">
-            <img src="./icons/yoga.svg" alt="Calidad Icono" class="icon" />
+            <Svg src="./icons/yoga.svg" />
             <h3 class="section">
                 <HtmlTextLettersClassWrapper HTMLText="Calidad de Productos" />
             </h3>
@@ -47,7 +48,7 @@
             </p>
             <a href="./" class="store-redirection">
                 <HtmlTextLettersClassWrapper HTMLText="Ver tienda" />
-                <img class="arrow" src="./icons/diagonal-arrow-right-up black.svg" alt="">
+                <Svg src="./icons/diagonal-arrow-right-up black.svg" />
             </a>
         </div>
     </div>
