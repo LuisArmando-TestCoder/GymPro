@@ -42,7 +42,7 @@
         left: 0;
         right: 0;
         z-index: 1;
-        box-shadow: 0 0 100px -25px var(--color-background);
+        box-shadow: 0 0 100px -35px var(--color-background);
         color:  var(--color-background);
         font-family: var(--font-title);
     }
