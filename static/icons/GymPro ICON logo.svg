@@ -1,0 +1,8 @@
+<svg width="63" height="66" viewBox="0 0 138 172" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.5 50V169.5L31.5 122.5V2L0.5 50Z" fill="var(--color-background)"/>
+<path d="M85 2L53.5 50V109.75V169.5L85 122.5V2Z" fill="var(--color-background)"/>
+<path d="M106.5 50V169.5L137.5 122.5V2L106.5 50Z" fill="var(--color-background)"/>
+<path d="M0.5 50V169.5L31.5 122.5V2L0.5 50Z" stroke="var(--color-background)"/>
+<path d="M85 2L53.5 50V109.75V169.5L85 122.5V2Z" stroke="var(--color-background)"/>
+<path d="M106.5 50V169.5L137.5 122.5V2L106.5 50Z" stroke="var(--color-background)"/>
+</svg>

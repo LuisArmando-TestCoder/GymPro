@@ -1,5 +1,6 @@
 <script>
-    import ThemeChanger from "../ThemeChanger/ThemeChanger.svelte";
+    import Svg from "../SVG/SVG.svelte";
+import ThemeChanger from "../ThemeChanger/ThemeChanger.svelte";
 
     let menuOpen = false;
 
@@ -9,28 +10,46 @@
 </script>
 
 <header>
-    <div class="logo">GymPro</div>
     <nav>
         <div class="menu {menuOpen ? 'open' : ''}">
-            <span class="menu-item">Inicio</span>
-            <span class="menu-item">Nosotros</span>
-            <span class="menu-item">Contacto</span>
-            <div class="dropdown">
-                <span class="menu-item">Tienda</span>
-                <ul class="dropdown-menu">
-                    <li>Suplementos</li>
-                    <li>Accesorios</li>
-                    <li>Ropa Deportiva</li>
-                </ul>
-            </div>
+            <section class="menu-section">
+                <span class="menu-item">Inicio</span>
+                <span class="menu-item">Nosotros</span>
+                <span class="menu-item">Contacto</span>
+            </section>
+            <section class="menu-section center">
+                <Svg src="./icons/GymPro ICON logo.svg" />
+            </section>
+            <section class="menu-section">
+                <div class="dropdown">
+                    <span class="menu-item">Tienda</span>
+                    <ul class="dropdown-menu">
+                        <li>Suplementos</li>
+                        <li>Accesorios</li>
+                        <li>Ropa Deportiva</li>
+                    </ul>
+                </div>
+                <ThemeChanger />
+                <div class="cart-icon">🛒</div>
+                <span class="menu-icon" on:click={toggleMenu}>☰</span>
+            </section>
         </div>
-        <ThemeChanger />
-        <div class="cart-icon">🛒</div>
-        <span class="menu-icon" on:click={toggleMenu}>☰</span>
     </nav>
 </header>
 
 <style>
+    .menu-section {
+        width: 100%;
+        max-width: 33.33%;
+        display: flex;
+        justify-content: space-between;
+        place-items: center;
+    }
+
+    .center {
+        justify-content: center;
+    }
+
     header {
         background-color: var(--color-background-inversion);
         display: flex;
@@ -51,6 +70,7 @@
         display: flex;
         gap: 1.5rem;
         align-items: center;
+        width: 100%;
     }
 
     .logo {
@@ -62,6 +82,8 @@
     .menu {
         display: flex;
         gap: 1rem;
+        width: 100%;
+        justify-content: space-between;
     }
 
     .menu-item {
