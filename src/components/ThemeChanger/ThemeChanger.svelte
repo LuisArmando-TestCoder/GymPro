@@ -87,11 +87,13 @@
 
     .dark .theme-toggle .icon {
         border-radius: 50%;
+        transition: .75s;
         box-shadow: inset -7px 0px 0 2px var(--color-background);
     }
 
     .light .theme-toggle .icon {
         border-radius: 50%;
-        box-shadow: inset -40px -3px 0 4px var(--color-foreground);;
+        transition: .75s;
+        box-shadow: inset 40px -3px 0 4px var(--color-foreground);;
     }
 </style>

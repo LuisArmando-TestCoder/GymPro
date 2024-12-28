@@ -60,7 +60,7 @@ import ThemeChanger from "../ThemeChanger/ThemeChanger.svelte";
         top: 0;
         left: 0;
         right: 0;
-        z-index: 1;
+        z-index: 2;
         box-shadow: 0 0 100px -35px var(--color-background);
         color:  var(--color-background);
         font-family: var(--font-title);

@@ -23,15 +23,13 @@
     });
   </script>
   
-  <div>
-    {#if error}
-      <p style="color: red;">{error}</p>
-    {:else if svgContent}
-      {@html svgContent}
-    {:else}
-      <p class="loading">Loading<span class="dots"></span></p>
-    {/if}
-  </div>
+{#if error}
+    <p style="color: red;">{error}</p>
+{:else if svgContent}
+    {@html svgContent}
+{:else}
+    <p class="loading">Loading<span class="dots"></span></p>
+{/if}
   
   <style>
     .svg-wrapper {
