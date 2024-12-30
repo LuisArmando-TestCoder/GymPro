@@ -1,35 +1,112 @@
-import Victor from "victor";
 import * as THREE from "three";
-import { events, consulters } from "scene-preset";
-// import { CanvasState } from "scene-preset/lib/types/state";
-// import { Scene, Scenes, SceneExport } from "scene-preset/lib/types/consulters";
-import gsap from "gsap";
+import type {
+  SceneExport,
+  Scenes,
+} from "scene-preset/lib/consulters/getSceneLifeCycle";
 
-// import Image from "./meshes/Image";
-// import Text from "./meshes/Text";
-// import Model from "./meshes/Model";
-import getTextureMaterial from "./materials/getTextureMaterial";
-// import getQuixelMaterial from "./materials/getQuixelMaterial";
+// Función externa para crear un elemento de video a partir de una URL.
+export function getVideo(url: string): HTMLVideoElement {
+  const video = document.createElement("video");
+  video.src = url;
+  video.crossOrigin = "anonymous"; // Permite el acceso a recursos externos si es necesario.
+  video.loop = true;
+  video.muted = true;
+  video.autoplay = true;
+  video.playsInline = true;
+  video.load();
+  return video;
+}
 
-const scale = 4;
-const distance = 5;
-const height = 1;
-const space = 3;
+function getPlaneVideo3D(video: HTMLVideoElement): THREE.Mesh {
+  const videoTexture = new THREE.VideoTexture(video);
+  videoTexture.minFilter = THREE.LinearFilter;
+  videoTexture.magFilter = THREE.LinearFilter;
+  videoTexture.format = THREE.RGBFormat;
+  videoTexture.flipY = true;
+
+  // Crea el material con la textura de video y lo hace visible desde ambos lados.
+  const material = new THREE.MeshBasicMaterial({
+    map: videoTexture,
+    side: THREE.DoubleSide,
+  });
+
+  // Crea la geometría del plano para mostrar el video.
+  const geometry = new THREE.PlaneGeometry(1, 2); // Relación de aspecto común 9:16
+
+  // Devuelve el Mesh con el video aplicado.
+  return new THREE.Mesh(geometry, material);
+}
+
+function getVideos(urls: string[]): {
+  videosGroup: THREE.Group;
+  videos: HTMLVideoElement[];
+} {
+  const videosGroup = new THREE.Group();
+  const videos = urls.map((url, index) => {
+    const video = getVideo(url);
+
+    const planeVideo3D = getPlaneVideo3D(video);
+
+    videosGroup.add(planeVideo3D);
+
+    video.play();
+
+    if (index)
+      setTimeout(() => {
+        video.pause();
+      }, 3e3);
+
+    return video;
+  });
+
+  return { videosGroup, videos };
+}
 
 export default {
-  pictures: {
-    object: async () => {
-      const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-      const geometry = new THREE.PlaneGeometry(2, 2);
-      return new THREE.Mesh(geometry, material);
+  videos: {
+    object: async (): Promise<THREE.Group> => {
+      return getVideos([
+        "./videos/Beneficios de los aminoacidos.mp4",
+        "./videos/COMO PREPARAR CREATINA.mp4",
+        "./videos/ENTRENO 2.mp4",
+        "./videos/GYM PRO FINAL.mp4",
+        "./videos/Video patrocinado 2.mp4",
+        // "./videos/vitaminico.mp4",
+      ]).videosGroup;
     },
-    onSetup({ canvasState }) {
-      const { scene } = canvasState;
-      const picture = scene.children[0] as THREE.Mesh;
-      picture.position.set(0, 0, 0);
+
+    onSetup({ object3D }: SceneExport) {
+      object3D.position.set(0, 2, 5);
+
+      object3D.children.forEach((child, index) => {
+        const displacementZ = Math.ceil(index / 2);
+        const displacementX = displacementZ * Math.sign(-(index % 2) + 1 / 2);
+        child.rotation.y +=
+          -(displacementZ / object3D.children.length) *
+            Math.sign(displacementX) *
+            Math.PI +
+          Math.PI;
+        const displacements = [
+          [0, .35, .3],
+          [0, 0.355, 0.58],
+        ];
+        child.position.set(
+          displacementX *
+            (Math.abs(1 / child.rotation.y - Math.PI)) *
+              displacements[0][displacementZ],
+          0,
+          displacementZ * displacements[1][displacementZ]
+        );
+        // displacementZ
+      });
+
+      console.log("Objeto 3D configurado con video:", object3D);
     },
-    onAnimation: () => {
-        
+
+    onAnimation: ({ object3D }: SceneExport) => {
+      // object3D.children.forEach((child, index) => {
+      //   child.rotation.y += 1;
+      // });
     },
   } as unknown,
-};
+} as Scenes;
