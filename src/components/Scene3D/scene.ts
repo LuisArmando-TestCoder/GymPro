@@ -87,17 +87,14 @@ export default {
             Math.PI +
           Math.PI;
         const displacements = [
-          [0, .35, .3],
-          [0, 0.355, 0.58],
+          [0, .95, 1.575],
+          [0, 0.3, 0.6],
         ];
         child.position.set(
-          displacementX *
-            (Math.abs(1 / child.rotation.y - Math.PI)) *
-              displacements[0][displacementZ],
+          Math.sign(displacementX) * displacements[0][displacementZ],
           0,
           displacementZ * displacements[1][displacementZ]
         );
-        // displacementZ
       });
 
       console.log("Objeto 3D configurado con video:", object3D);

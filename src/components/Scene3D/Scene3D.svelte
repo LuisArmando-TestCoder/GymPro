@@ -15,6 +15,7 @@
 
 <style lang="scss">
   .canvas-container {
+    pointer-events: none;
     min-height: 100vh;
 
     &__canvas {
