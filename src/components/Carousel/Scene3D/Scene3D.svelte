@@ -1,10 +1,17 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import scene from ".";
+  import { actions } from "scene-preset";
 
   let id = "AppCanvas";
 
   onMount(() => {
+    actions.addSceneSetupIntrude(
+      ({ presetConfiguration, camera }: { [index: string]: any }) => {
+        presetConfiguration.ambient.color = 0x000000;
+        // camera?.setFocalLength(20);
+      }
+    );
     scene(id);
   });
 </script>
@@ -15,7 +22,7 @@
 
 <style lang="scss">
   .canvas-container {
-    pointer-events: none;
+    // pointer-events: none;
     height: 50vw;
 
     &__canvas {

@@ -91,7 +91,18 @@ export default {
 
       object3D.children.forEach((child, index) => {
         const displacementZ = Math.ceil(index / 2);
-        const displacementX = displacementZ * Math.sign(-(index % 2) + 1 / 2);
+        const { length } = object3D.children;
+        // const directional = length / 2 - index;
+        const displacementX =
+        // index - Math.floor(length / 2)
+          // index && Math.sign(Math.abs(directional)) * Math.sign(directional);
+        // Math.ceil(
+        //   (index + Math.floor(length / 2)) - (length / 2)
+        // );
+        displacementZ * Math.sign(-(index % 2) + 1 / 2);
+        console.log(displacementX);
+        // directional = index - object3D.children.length / 2
+        // index && Math.ceil(Math.abs(directional)) * Math.sign(directional);
         child.rotation.y +=
           -(displacementZ / object3D.children.length) *
             Math.sign(displacementX) *
@@ -114,38 +125,22 @@ export default {
         }))
       );
 
+      htmlVideos[0].play();
+
       currentIndex.subscribe((index) => {
-        console.clear();
+        // console.clear();
 
         object3D.children.forEach((child, childIndex) => {
           const newIndex =
             (index + childIndex + get(videos).length) % get(videos).length;
-          // console.log(
-          //   "newIndex",
-          //   index,
-          //   newIndex,
-          //   child.position,
-          //   originalChildren[newIndex].rotation
-          // );
-          htmlVideos[newIndex].pause();
+          htmlVideos[childIndex].pause();
 
-          gsap
-            .timeline()
-            .to(child.position, {
-              y: (childIndex % 2) * 2,
-            })
-            .to(child.position, {
-              x: originalChildren[newIndex].position.x,
-            })
-            .to(child.position, {
-              z: originalChildren[newIndex].position.z,
-            })
-            .to(child.rotation, {
-              y: originalChildren[newIndex].rotation._y,
-            })
-            .to(child.position, {
-              y: 0,
-            });
+          gsap.to(child.position, {
+            ...originalChildren[newIndex].position,
+          });
+          gsap.to(child.rotation, {
+            y: originalChildren[newIndex].rotation._y,
+          });
 
           if (originalChildren[newIndex].position.x === 0) {
             htmlVideos[childIndex].play();
@@ -165,3 +160,34 @@ export default {
 function getOriginal(item: any) {
   return JSON.parse(JSON.stringify(item));
 }
+
+// htmlVideos[newIndex].pause();
+
+// gsap
+//   .timeline()
+//   .to(child.position, {
+//     y: (childIndex % 2) * 2,
+//   })
+//   .to(child.position, {
+//     x: originalChildren[newIndex].position.x,
+//   })
+//   .to(child.position, {
+//     z: originalChildren[newIndex].position.z,
+//   })
+//   .to(child.rotation, {
+//     y: originalChildren[newIndex].rotation._y,
+//   })
+//   .to(child.position, {
+//     y: 0,
+//   });
+
+// if (originalChildren[newIndex].position.x === 0) {
+//   htmlVideos[childIndex].play();
+// }
+// console.log(
+//   "newIndex",
+//   index,
+//   newIndex,
+//   child.position,
+//   originalChildren[newIndex].rotation
+// );
