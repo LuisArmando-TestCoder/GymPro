@@ -127,7 +127,7 @@ export default {
           //   child.position,
           //   originalChildren[newIndex].rotation
           // );
-          htmlVideos[childIndex].pause();
+          htmlVideos[newIndex].pause();
 
           gsap
             .timeline()
