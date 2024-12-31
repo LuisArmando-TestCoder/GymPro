@@ -129,18 +129,23 @@ export default {
           // );
           htmlVideos[childIndex].pause();
 
-          gsap.timeline()
-          .to(child.position, {
-            y: (childIndex % 2) * 2,
-          })
-          .to(child.position, {
-            ...originalChildren[newIndex].position,
-          }).to(child.rotation, {
-            y: originalChildren[newIndex].rotation._y,
-          })
-          .to(child.position, {
-            y: 0,
-          });
+          gsap
+            .timeline()
+            .to(child.position, {
+              y: (childIndex % 2) * 2,
+            })
+            .to(child.position, {
+              x: originalChildren[newIndex].position.x,
+            })
+            .to(child.position, {
+              z: originalChildren[newIndex].position.z,
+            })
+            .to(child.rotation, {
+              y: originalChildren[newIndex].rotation._y,
+            })
+            .to(child.position, {
+              y: 0,
+            });
 
           if (originalChildren[newIndex].position.x === 0) {
             htmlVideos[childIndex].play();
