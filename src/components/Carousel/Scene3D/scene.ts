@@ -3,6 +3,9 @@ import type {
   SceneExport,
   Scenes,
 } from "scene-preset/lib/consulters/getSceneLifeCycle";
+import { currentIndex, videos } from "../store";
+import gsap from "gsap";
+import { get } from "svelte/store";
 
 // Función externa para crear un elemento de video a partir de una URL.
 export function getVideo(url: string): HTMLVideoElement {
@@ -62,17 +65,25 @@ function getVideos(urls: string[]): {
   return { videosGroup, videos };
 }
 
+let htmlVideos: HTMLVideoElement[];
+
 export default {
   videos: {
     object: async (): Promise<THREE.Group> => {
-      return getVideos([
+      videos.set([
         "./videos/Beneficios de los aminoacidos.mp4",
         "./videos/COMO PREPARAR CREATINA.mp4",
         "./videos/ENTRENO 2.mp4",
         "./videos/GYM PRO FINAL.mp4",
         "./videos/Video patrocinado 2.mp4",
         // "./videos/vitaminico.mp4",
-      ]).videosGroup;
+      ]);
+
+      const videosObject = getVideos(get(videos));
+
+      htmlVideos = videosObject.videos;
+
+      return videosObject.videosGroup;
     },
 
     onSetup({ object3D }: SceneExport) {
@@ -87,7 +98,7 @@ export default {
             Math.PI +
           Math.PI;
         const displacements = [
-          [0, .95, 1.575],
+          [0, 0.95, 1.575],
           [0, 0.3, 0.6],
         ];
         child.position.set(
@@ -96,8 +107,41 @@ export default {
           displacementZ * displacements[1][displacementZ]
         );
       });
+      const originalChildren = getOriginal(
+        object3D.children.map(({ position, rotation }) => ({
+          position,
+          rotation,
+        }))
+      );
 
-      console.log("Objeto 3D configurado con video:", object3D);
+      currentIndex.subscribe((index) => {
+        console.clear();
+
+        object3D.children.forEach((child, childIndex) => {
+          const newIndex =
+            (index + childIndex + get(videos).length) % get(videos).length;
+          // console.log(
+          //   "newIndex",
+          //   index,
+          //   newIndex,
+          //   child.position,
+          //   originalChildren[newIndex].rotation
+          // );
+          htmlVideos[childIndex].pause();
+
+          gsap.to(child.position, {
+            ...originalChildren[newIndex].position,
+            onComplete: () => {
+              if (child.position.x === 0) {
+                htmlVideos[childIndex].play();
+              }
+            },
+          });
+          gsap.to(child.rotation, {
+            y: originalChildren[newIndex].rotation._y,
+          });
+        });
+      });
     },
 
     onAnimation: ({ object3D }: SceneExport) => {
@@ -107,3 +151,7 @@ export default {
     },
   } as unknown,
 } as Scenes;
+
+function getOriginal(item: any) {
+  return JSON.parse(JSON.stringify(item));
+}

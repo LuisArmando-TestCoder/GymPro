@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import scene from "./";
+  import scene from ".";
 
   let id = "AppCanvas";
 
@@ -16,7 +16,7 @@
 <style lang="scss">
   .canvas-container {
     pointer-events: none;
-    min-height: 100vh;
+    height: 50vw;
 
     &__canvas {
       display: block;
