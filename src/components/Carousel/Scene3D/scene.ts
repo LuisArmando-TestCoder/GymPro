@@ -129,12 +129,17 @@ export default {
           // );
           htmlVideos[childIndex].pause();
 
-          gsap.to(child.position, {
+          gsap.timeline()
+          .to(child.position, {
+            y: (childIndex % 2) * 2,
+          })
+          .to(child.position, {
             ...originalChildren[newIndex].position,
-            duration: 1,
-          });
-          gsap.to(child.rotation, {
+          }).to(child.rotation, {
             y: originalChildren[newIndex].rotation._y,
+          })
+          .to(child.position, {
+            y: 0,
           });
 
           if (originalChildren[newIndex].position.x === 0) {
