@@ -131,15 +131,15 @@ export default {
 
           gsap.to(child.position, {
             ...originalChildren[newIndex].position,
-            onComplete: () => {
-              if (child.position.x === 0) {
-                htmlVideos[childIndex].play();
-              }
-            },
+            duration: 1,
           });
           gsap.to(child.rotation, {
             y: originalChildren[newIndex].rotation._y,
           });
+
+          if (originalChildren[newIndex].position.x === 0) {
+            htmlVideos[childIndex].play();
+          }
         });
       });
     },
