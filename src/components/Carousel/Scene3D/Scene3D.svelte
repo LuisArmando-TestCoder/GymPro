@@ -22,7 +22,7 @@
 
 <style lang="scss">
   .canvas-container {
-    // pointer-events: none;
+    pointer-events: none;
     height: 50vw;
 
     &__canvas {

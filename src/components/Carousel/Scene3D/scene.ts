@@ -90,17 +90,19 @@ export default {
       object3D.position.set(0, 2, 5);
 
       object3D.children.forEach((child, index) => {
-        const displacementZ = Math.ceil(index / 2);
         const { length } = object3D.children;
+        // const displacementZ = Math.ceil(index / 2);
         // const directional = length / 2 - index;
         const displacementX =
+          ((index + Math.floor(length / 2)) % length) - Math.floor(length / 2);
         // index - Math.floor(length / 2)
-          // index && Math.sign(Math.abs(directional)) * Math.sign(directional);
+        // index && Math.sign(Math.abs(directional)) * Math.sign(directional);
         // Math.ceil(
         //   (index + Math.floor(length / 2)) - (length / 2)
         // );
-        displacementZ * Math.sign(-(index % 2) + 1 / 2);
-        console.log(displacementX);
+        // displacementZ * Math.sign(-(index % 2) + 1 / 2);
+        const displacementZ = Math.abs(displacementX);
+        console.log(displacementX, displacementZ);
         // directional = index - object3D.children.length / 2
         // index && Math.ceil(Math.abs(directional)) * Math.sign(directional);
         child.rotation.y +=
