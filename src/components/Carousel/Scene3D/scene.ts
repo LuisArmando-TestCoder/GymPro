@@ -139,9 +139,11 @@ export default {
 
           gsap.to(child.position, {
             ...originalChildren[newIndex].position,
+            duration: .35,
           });
           gsap.to(child.rotation, {
             y: originalChildren[newIndex].rotation._y,
+            duration: .35,
           });
 
           if (originalChildren[newIndex].position.x === 0) {

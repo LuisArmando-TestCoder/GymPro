@@ -13,17 +13,26 @@ let sceneEvents: {
 export default (id: string) =>
   presetScene(
     {
-      async setup(canvasState: { [index: string]: any }) {
+      async setup(canvasState: types.state.CanvasState) {
         sceneEvents = await consulters.getSceneLifeCycle(scene);
 
         sceneEvents?.onSetup(canvasState);
       },
-      animate(canvasState: { [index: string]: any }) {
+      animate(canvasState: types.state.CanvasState) {
         sceneEvents?.onAnimation(canvasState);
+
+        canvasState.renderer?.setClearColor(
+          getCSSVariableValue("--color-background-inversion")
+        );
 
         actions.blacklistObjects({
           scene: canvasState.scene,
-          blacklist: ["SimpleCube", "SimpleFloor", "SimpleSphere", "SimpleLightSet"],
+          blacklist: [
+            "SimpleCube",
+            "SimpleFloor",
+            "SimpleSphere",
+            "SimpleLightSet",
+          ],
         } as BlacklistParameters);
 
         actions.blacklistControls([
@@ -37,3 +46,8 @@ export default (id: string) =>
     },
     `#${id}`
   );
+
+function getCSSVariableValue(variableName: string) {
+  const rootStyles = getComputedStyle(document.documentElement);
+  return rootStyles.getPropertyValue(variableName).trim();
+}

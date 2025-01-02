@@ -24,27 +24,33 @@
 </div>
 
 <style lang="scss">
-  .navigation .button {
-    font-family: var(--font-title);
+  .navigation {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 1fr 1fr;
+    width: 100px;
+    margin: auto;
+    padding-bottom: 50px;
+
+    .button {
+      font-family: var(--font-title);
+      padding: 15px 0;
+      border: 0;
+      color: var(--color-outline);
+      background: var(--color-foreground);
+      filter: saturate(2);
+      transform: skew(-5deg);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--color-foreground);
+        background: var(--color-outline);
+        filter: brightness(1.25);
+      }
+    }
   }
 
-  .carousel-container {
-    display: flex;
-    transition: transform 0.5s;
-    perspective: 1000px;
-    transform-style: preserve-3d;
-  }
-
-  .video-container {
-    perspective: 1000px;
-    transform-style: preserve-3d;
-  }
-
-  .video {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    max-width: 300px;
-    object-fit: cover;
+  .carousel {
+    background: var(--color-background-inversion);
   }
 </style>
